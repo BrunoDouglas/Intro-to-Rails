@@ -1,4 +1,4 @@
 class Person < ApplicationRecord
-  has_many :personneibourhoods
-  has_many :neibourhoods, through: :personneibourhoods
+  has_many :residencies
+  has_many :neibourhoods, through: :residencies
 end
