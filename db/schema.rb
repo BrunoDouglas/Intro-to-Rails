@@ -40,6 +40,12 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "vehicle_origins", force: :cascade do |t|
+    t.string "country"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "vehicle_ownerships", force: :cascade do |t|
     t.integer "person_id"
     t.integer "vehicle_id"
@@ -49,22 +55,16 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
     t.index ["vehicle_id"], name: "index_vehicle_ownerships_on_vehicle_id"
   end
 
-  create_table "vehicle_types", force: :cascade do |t|
-    t.string "type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "vehicles", force: :cascade do |t|
     t.string "name"
-    t.integer "vehicletype_id"
+    t.integer "vehicleorigin_id"
     t.integer "vehiclemake_id"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["person_id"], name: "index_vehicles_on_person_id"
     t.index ["vehiclemake_id"], name: "index_vehicles_on_vehiclemake_id"
-    t.index ["vehicletype_id"], name: "index_vehicles_on_vehicletype_id"
+    t.index ["vehicleorigin_id"], name: "index_vehicles_on_vehicleorigin_id"
   end
 
 end

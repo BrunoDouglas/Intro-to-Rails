@@ -1,0 +1,2 @@
+class VehicleOrigin < ApplicationRecord
+end
