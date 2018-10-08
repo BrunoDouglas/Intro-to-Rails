@@ -4,4 +4,10 @@ class Neighbourhood < ApplicationRecord
   def people
     Person.where(:neighbourhood => self)
   end
+
+  def vehicles
+    people = Person.where(:neighbourhood => self)
+
+    vehicles VehicleOwnership.where(:person => people)
+  end
 end
