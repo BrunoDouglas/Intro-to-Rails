@@ -1,4 +1,6 @@
 class Vehicle < ApplicationRecord
+  validates :name, uniqueness: true, presence: true
+
   has_many :vehicleownerships
   has_many :people, through: :vehicleownerships
 

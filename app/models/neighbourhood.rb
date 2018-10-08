@@ -1,5 +1,7 @@
 class Neighbourhood < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
-  has_many :people
+  def people
+    Person.where(:neighbourhood => self)
+  end
 end

@@ -6,9 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+Neighbourhood.destroy_all
+Person.destroy_all
+Manufacturer.destroy_all
+Origin.destroy_all
+Vehicle.destroy_all
+
 #Loading Neibourhoods
-#https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=306000
-file = File.read('DataSources/winnipeg_neighbourhoods.json')
+#file = open('https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=50') {|x|x.read}
+#file = File.read('db/datasources/winnipeg_neighbourhoods.json')
+file = open('https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=50') {|x|x.read}
 JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
 
   hood = Neighbourhood.where(:name => n).first
@@ -17,7 +24,7 @@ JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
   end
   unless hood.nil?
      #Loading People
-    (Faker::Number.between(0, 10)).times do
+    (Faker::Number.between(0, 7)).times do
       hood.people.create(:name => Faker::Name.name,
                         :age  => Faker::Number.between(19, 70));
     end
@@ -25,8 +32,9 @@ JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
 end
 
 #Loading Cars Manufacturers
-#https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json
-file = File.read('DataSources/cars.json')
+#file = open('https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json'){|x|x.read}
+#file = File.read('db/datasources/winnipeg_neighbourhoods.json')
+file = open('https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json'){|x|x.read}
 JSON.parse(file).map {|x|  [x['Name'].split(' ')[1..-1].join(' ').capitalize,
                             x['Name'].partition(" ").first.capitalize,
                             x['Origin']] }.each do |v|
@@ -50,6 +58,12 @@ JSON.parse(file).map {|x|  [x['Name'].split(' ')[1..-1].join(' ').capitalize,
                             :person => Person.order("RANDOM()").limit(1).first,
                             :origin => origin)
 end
+
+puts "After seeding we got #{Person.count} people"
+puts "After seeding we got #{Neighbourhood.count} Neighbourhoods"
+puts "After seeding we got #{Vehicle.count} Vehicles"
+puts "After seeding we got #{Origin.count} Origins"
+puts "After seeding we got #{Manufacturer.count} Manufacturers"
 
 
 
