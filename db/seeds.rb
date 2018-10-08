@@ -6,6 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+VehicleOwnership.destroy_all
 Neighbourhood.destroy_all
 Person.destroy_all
 Manufacturer.destroy_all
@@ -14,8 +15,8 @@ Vehicle.destroy_all
 
 #Loading Neibourhoods
 #file = open('https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=50') {|x|x.read}
-#file = File.read('db/datasources/winnipeg_neighbourhoods.json')
-file = open('https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=50') {|x|x.read}
+file = File.read('db/datasources/winnipeg_neighbourhoods.json')
+#file = open('https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=50') {|x|x.read}
 JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
 
   hood = Neighbourhood.where(:name => n).first
@@ -33,8 +34,8 @@ end
 
 #Loading Cars Manufacturers
 #file = open('https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json'){|x|x.read}
-#file = File.read('db/datasources/winnipeg_neighbourhoods.json')
-file = open('https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json'){|x|x.read}
+file = File.read('db/datasources/cars.json')
+#file = open('https://raw.githubusercontent.com/vega/vega/master/docs/data/cars.json'){|x|x.read}
 JSON.parse(file).map {|x|  [x['Name'].split(' ')[1..-1].join(' ').capitalize,
                             x['Name'].partition(" ").first.capitalize,
                             x['Origin']] }.each do |v|
@@ -55,8 +56,17 @@ JSON.parse(file).map {|x|  [x['Name'].split(' ')[1..-1].join(' ').capitalize,
 
   vehicle = Vehicle.create(:name => model,
                             :manufacturer => manufacturer,
-                            :person => Person.order("RANDOM()").limit(1).first,
                             :origin => origin)
+
+
+  (Faker::Number.between(0, 20)).times do
+    person = Person.all.sample;
+    VehicleOwnership.create(person: person,
+                            vehicle: vehicle)
+
+    puts "Saved the vehicle #{vehicle.name} to #{person.name}"
+  end
+
 end
 
 puts "After seeding we got #{Person.count} people"
@@ -64,6 +74,7 @@ puts "After seeding we got #{Neighbourhood.count} Neighbourhoods"
 puts "After seeding we got #{Vehicle.count} Vehicles"
 puts "After seeding we got #{Origin.count} Origins"
 puts "After seeding we got #{Manufacturer.count} Manufacturers"
+puts "After seeding we got #{VehicleOwnership.count} Vehicles Ownerships"
 
 
 
