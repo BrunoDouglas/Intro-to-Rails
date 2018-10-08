@@ -1,2 +1,23 @@
-<h1>Neighbourhoods#index</h1>
-<p>Find me in app/views/neighbourhoods/index.html.erb</p>
+<h1 class="display-3">Neighbourhoods</h1>
+
+<ul class="list-group pull-down" id="contact-list">
+  <% @neighbourhoods.each do |n| %>
+      <li class="list-group-item">
+          <div class="row w-100">
+
+              <div class="col-12 text-center text-sm-left cursor-pointer" >
+                  <!--span class="fa fa-mobile fa-2x text-success float-right pulse" title="online now"></span-->
+                  <a href="#">
+                    <label class="name lead bolder"><strong><%= n.name %><strong></label>
+                    <br>
+                    <span class="text-muted small"><b>People:</b> <%= n.people.count %></span>
+                    <br>
+                    <span class="text-muted small text-truncate"><b>Vehicles: </b><%= n.vehicles.count %></span>
+                  </a>
+              </div>
+          </div>
+      </li>
+  <% end %>
+</ul>
+<%= paginate @neighbourhoods %>
+

@@ -7,7 +7,7 @@ class Person < ApplicationRecord
 
   belongs_to :neighbourhood
 
-  def vehiclesNumber
-    VehicleOwnership.where(:person => self).count
+  def vehicles
+    VehicleOwnership.where(:person => self)
   end
 end

@@ -6,8 +6,6 @@ class Neighbourhood < ApplicationRecord
   end
 
   def vehicles
-    people = Person.where(:neighbourhood => self)
-
-    vehicles VehicleOwnership.where(:person => people)
+    VehicleOwnership.where(:person => people)
   end
 end
