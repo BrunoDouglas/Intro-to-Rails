@@ -10,11 +10,17 @@ require 'faker'
 #https://data.winnipeg.ca/resource/w4xz-nc35.json?$select=distinct(neighbourhood)&$limit=306000
 file = File.read('DataSources/winnipeg_neighbourhoods.json')
 JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
-  hood = Neighbourhood.create(:name => n)
-  #Loading People
-  (Faker::Number.between(0, 10)).times do
-    hood.people.create(:name => Faker::Name.name,
-                       :age  => Faker::Number.between(19, 70));
+
+  hood = Neighbourhood.where(:name => n).first
+  if hood.nil? && !n.blank?
+    hood = Neighbourhood.create(:name => n)
+  end
+  unless hood.nil?
+     #Loading People
+    (Faker::Number.between(0, 10)).times do
+      hood.people.create(:name => Faker::Name.name,
+                        :age  => Faker::Number.between(19, 70));
+    end
   end
 end
 
