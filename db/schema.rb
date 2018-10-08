@@ -12,7 +12,19 @@
 
 ActiveRecord::Schema.define(version: 2018_10_07_163801) do
 
+  create_table "manufacturers", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "neighbourhoods", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "origins", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -21,29 +33,10 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
   create_table "people", force: :cascade do |t|
     t.string "name"
     t.integer "age"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "residencies", force: :cascade do |t|
-    t.integer "person_id"
     t.integer "neighbourhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["neighbourhood_id"], name: "index_residencies_on_neighbourhood_id"
-    t.index ["person_id"], name: "index_residencies_on_person_id"
-  end
-
-  create_table "vehicle_makes", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "vehicle_origins", force: :cascade do |t|
-    t.string "country"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["neighbourhood_id"], name: "index_people_on_neighbourhood_id"
   end
 
   create_table "vehicle_ownerships", force: :cascade do |t|
@@ -57,14 +50,14 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
 
   create_table "vehicles", force: :cascade do |t|
     t.string "name"
-    t.integer "vehicleorigin_id"
-    t.integer "vehiclemake_id"
+    t.integer "origin_id"
+    t.integer "manufacturer_id"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["manufacturer_id"], name: "index_vehicles_on_manufacturer_id"
+    t.index ["origin_id"], name: "index_vehicles_on_origin_id"
     t.index ["person_id"], name: "index_vehicles_on_person_id"
-    t.index ["vehiclemake_id"], name: "index_vehicles_on_vehiclemake_id"
-    t.index ["vehicleorigin_id"], name: "index_vehicles_on_vehicleorigin_id"
   end
 
 end
