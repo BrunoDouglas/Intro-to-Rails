@@ -1,8 +1,8 @@
-<h1 class="display-3">Neighbourhoods > <%= @n.name %></h1>
+<h1 class="display-3"><%= link_to 'Hoods', '/neighbourhoods' %> > <u><%= @n.name %></u></h1>
 
 <div class="card card-default  row">
   <div class="col-md-12">
-    <div class="col-12 text-center text-sm-left cursor-pointer" >
+    <div class="col-12 text-center text-sm-left cursor-pointer padding-top-30 padding-bottom-30" >
       <label class="name lead bolder"><%= @n.name %></label>
       <br>
       <span class="text-muted"><b><%= link_to 'People', "/neighbourhoods/#{@n.id}/people" %>:</b> <%= @n.people.count %> <br >

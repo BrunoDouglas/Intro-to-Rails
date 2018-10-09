@@ -1,0 +1,20 @@
+<h1 class="display-3"><%= link_to 'People', '/people' %> > <u><%= @p.name %></u></h1>
+
+<div class="card card-default  row">
+  <div class="col-md-12">
+    <div class="col-12 text-center text-sm-left cursor-pointer padding-top-30 padding-bottom-30" >
+      <label class="name lead bolder"><b>Name:</b> <%= @p.name %></label>
+      <br />
+      <label class="name lead bolder"><b>Age:</b> <%= @p.age %></label>
+      <br />
+      <label class="name lead bolder"><b>Neighbourhood:</b> <%= @p.neighbourhood.name %></label>
+      <br />
+      <label class="name lead bolder"><b>Vehicles:</b> <%= @p.vehicles.count %></label>
+      <ul>
+        <% @p.vehicles.each do |v| %>
+          <%= link_to v.vehicle.name, v.vehicle %><br />
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

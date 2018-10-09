@@ -1,4 +1,4 @@
-<h1 class="display-3">Neighbourhoods > <%= @n.name %> > Vehicles</h1>
+<h1 class="display-3"><%= link_to 'Hoods', '/neighbourhoods' %> > <u><%= @n.name %></u> > Vehicles</h1>
 
 <ul class="card card-default list-group pull-down" id="contact-list">
   <% @n.vehicles.each do |v| %>
