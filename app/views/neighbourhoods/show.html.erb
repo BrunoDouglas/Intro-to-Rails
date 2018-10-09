@@ -1,2 +1,13 @@
-<h1>Neighbourhoods#show</h1>
-<p>Find me in app/views/neighbourhoods/show.html.erb</p>
+<h1 class="display-3">Neighbourhoods > <%= @n.name %></h1>
+
+<div class="card card-default  row">
+  <div class="col-md-12">
+    <div class="col-12 text-center text-sm-left cursor-pointer" >
+      <label class="name lead bolder"><%= @n.name %></label>
+      <br>
+      <span class="text-muted small"><b>People:</b> <%= @n.people.count %> - <%= link_to 'Check this out', "/neighbourhoods/#{@n.id}/people" %></span>
+      <br>
+      <span class="text-muted small text-truncate"><b>Vehicles: </b><%= @n.vehicles.count %>  - <%= link_to 'Check this out', "/neighbourhoods/#{@n.id}/vehicles" %></span>
+    </div>
+  </div>
+</div>

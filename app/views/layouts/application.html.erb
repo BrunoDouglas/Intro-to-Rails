@@ -20,22 +20,22 @@
       <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Main <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/">Main <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About  </a>
+            <a class="nav-link" href="/about">About  </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Neighbourhoods  </a>
+            <a class="nav-link" href="/neighbourhoods">Neighbourhoods  </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Residents</a>
+            <a class="nav-link" href="/residents">Residents</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Vehicles</a>
+            <a class="nav-link" href="/vehicles">Vehicles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Manufacturers</a>
+            <a class="nav-link" href="/manufacturers">Manufacturers</a>
           </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
@@ -49,16 +49,10 @@
 
       <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="jumbotron">
+
         <div class="container">
-          <!-- contacts card -->
-          <div class="card card-default" id="card_contacts">
-            <div id="contacts">
-                <%= yield %>
-            </div>
-          </div>
-
+          <%= yield %>
           <hr>
-
         </div><!-- /container -->
       </div>
 
