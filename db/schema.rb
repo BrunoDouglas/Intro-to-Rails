@@ -12,19 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2018_10_07_163801) do
 
-  create_table "manufacturers", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "neighbourhoods", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "origins", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -50,14 +38,10 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
 
   create_table "vehicles", force: :cascade do |t|
     t.string "name"
-    t.integer "origin_id"
-    t.integer "manufacturer_id"
-    t.integer "person_id"
+    t.string "origin"
+    t.string "manufacturer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["manufacturer_id"], name: "index_vehicles_on_manufacturer_id"
-    t.index ["origin_id"], name: "index_vehicles_on_origin_id"
-    t.index ["person_id"], name: "index_vehicles_on_person_id"
   end
 
 end

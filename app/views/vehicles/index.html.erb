@@ -1,0 +1,19 @@
+<h1 class="display-3">Vehicles</h1>
+<ul class="card card-default list-group pull-down" id="contact-list">
+  <% @v.each do |n| %>
+      <li class="list-group-item">
+          <div class="row w-100">
+              <div class="col-12 text-center text-sm-left cursor-pointer" >
+                <label class="name lead bolder"><%= link_to n.name, n  %></label>
+                <br>
+                <span class="text-muted small"><b>Manufacturer:</b> <%= n.manufacturer %></span>
+                <br>
+                <span class="text-muted small"><b>Origin:</b> <%= n.origin %></span>
+                <br>
+
+              </div>
+          </div>
+      </li>
+  <% end %>
+</ul>
+<%= paginate @v %>
