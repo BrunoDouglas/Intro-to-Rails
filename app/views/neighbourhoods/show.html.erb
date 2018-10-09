@@ -5,9 +5,9 @@
     <div class="col-12 text-center text-sm-left cursor-pointer" >
       <label class="name lead bolder"><%= @n.name %></label>
       <br>
-      <span class="text-muted small"><b>People:</b> <%= @n.people.count %> - <%= link_to 'Check this out', "/neighbourhoods/#{@n.id}/people" %></span>
+      <span class="text-muted"><b><%= link_to 'People', "/neighbourhoods/#{@n.id}/people" %>:</b> <%= @n.people.count %> <br >
+      <span class="text-muted"><b><%= link_to 'Vehicles', "/neighbourhoods/#{@n.id}/vehicles" %>: </b><%= @n.vehicles.count %></span>
       <br>
-      <span class="text-muted small text-truncate"><b>Vehicles: </b><%= @n.vehicles.count %>  - <%= link_to 'Check this out', "/neighbourhoods/#{@n.id}/vehicles" %></span>
     </div>
   </div>
 </div>

@@ -1,0 +1,18 @@
+<h1 class="display-3">Neighbourhoods > <%= @n.name %> > Vehicles</h1>
+
+<ul class="card card-default list-group pull-down" id="contact-list">
+  <% @n.vehicles.each do |v| %>
+      <li class="list-group-item">
+          <div class="row w-100">
+              <div class="col-12 text-center text-sm-left cursor-pointer" >
+                    <label class="name lead bolder"><%= link_to v.vehicle.name, v.vehicle  %></label>
+                    <br>
+                    <span class="text-muted small text-truncate"><b><%= link_to 'People', "/vehicles/#{v.vehicle.id}/owners" %>: <%= v.vehicle.getOwnersCount %></b></span>
+              </div>
+          </div>
+      </li>
+  <% end %>
+</ul>
+
+<%= link_to '< Go Back', @n %>
+

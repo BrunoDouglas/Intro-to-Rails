@@ -6,4 +6,8 @@ class Vehicle < ApplicationRecord
 
   belongs_to :origin
   belongs_to :manufacturer
+
+  def getOwnersCount
+    VehicleOwnership.where(:vehicle => self).count()
+  end
 end

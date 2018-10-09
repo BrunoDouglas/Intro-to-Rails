@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'neighbourhood/vehicles'
   get 'about', to: 'about#index'
   get 'neighbourhoods/:id/vehicles', to: 'neighbourhoods#vehicles'
   get 'neighbourhoods/:id/people', to: 'neighbourhoods#people'

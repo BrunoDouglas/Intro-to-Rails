@@ -17,10 +17,10 @@ class NeighbourhoodsController < ApplicationController
   end
 
   def people
-    id = nil
-    if request.get?
-      id = params[:id]
-    end
-    @p = Neighbourhood.find(id).people
+    @n = show
+  end
+
+  def vehicles
+   @n = show
   end
 end
