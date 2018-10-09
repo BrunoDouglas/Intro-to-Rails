@@ -16,7 +16,7 @@ class NeighbourhoodsController < ApplicationController
     @n = Neighbourhood.find(id)
   end
 
-  def peope
+  def people
     id = nil
     if request.get?
       id = params[:id]
