@@ -1,0 +1,19 @@
+<h1 class="display-3">Neighbourhoods > <%= @p.neighbourhood.name %> > People</h1>
+<ul class="card card-default list-group pull-down" id="contact-list">
+  <% @p.each do |p| %>
+      <li class="list-group-item">
+          <div class="row w-100">
+              <div class="col-12 text-center text-sm-left cursor-pointer" >
+                    <label class="name lead bolder"><%= link_to p.name, p  %></label>
+                    <br>
+                    <span class="text-muted small"><b>People:</b> <%= p.people.count %></span>
+                    <br>
+                    <span class="text-muted small text-truncate"><b>Vehicles: </b><%= p.vehicles.count %></span>
+              </div>
+          </div>
+      </li>
+  <% end %>
+</ul>
+<%= paginate @neighbourhoods %>
+
+
