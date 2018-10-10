@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  person: one
+  owner: one
   neighbourhood: one
 
 two:
-  person: two
+  owner: two
   neighbourhood: two

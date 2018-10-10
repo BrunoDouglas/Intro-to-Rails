@@ -8,7 +8,7 @@
 require 'faker'
 VehicleOwnership.destroy_all
 Neighbourhood.destroy_all
-Person.destroy_all
+Owner.destroy_all
 Vehicle.destroy_all
 
 #Loading Neibourhoods
@@ -21,9 +21,9 @@ JSON.parse(file).map {|x| x['neighbourhood_1']}.each do |n|
     hood = Neighbourhood.create(:name => n)
   end
   unless hood.nil?
-     #Loading People
+     #Loading Owners
     (Faker::Number.between(0, 7)).times do
-      hood.people.create(:name => Faker::Name.unique.name,
+      hood.owners.create(:name => Faker::Name.unique.name,
                         :age  => Faker::Number.between(19, 70));
     end
   end
@@ -46,16 +46,19 @@ JSON.parse(file).map {|x|  [x['Name'].split(' ')[1..-1].join(' ').capitalize,
 
 
   (Faker::Number.between(0, 20)).times do
-    person = Person.all.sample;
-    VehicleOwnership.create(person: person,
-                            vehicle: vehicle)
+    owner = Owner.all.sample;
+    unless VehicleOwnership.where(:owner => owner).count > Faker::Number.between(0, 2)
+      VehicleOwnership.create(owner: owner,
+                              vehicle: vehicle)
 
-    puts "Saved the vehicle #{vehicle.name} to #{person.name}"
+      puts "Saved the vehicle #{vehicle.name} to #{owner.name}"
+
+    end
   end
 
 end
 
-puts "After seeding we got #{Person.count} people"
+puts "After seeding we got #{Owner.count} owners"
 puts "After seeding we got #{Neighbourhood.count} Neighbourhoods"
 puts "After seeding we got #{Vehicle.count} Vehicles"
 puts "After seeding we got #{VehicleOwnership.count} Vehicles Ownerships"

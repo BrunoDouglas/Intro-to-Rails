@@ -11,8 +11,8 @@ class VehiclesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test "should get people" do
-    get vehicles_people_url
+  test "should get owners" do
+    get vehicles_owners_url
     assert_response :success
   end
 

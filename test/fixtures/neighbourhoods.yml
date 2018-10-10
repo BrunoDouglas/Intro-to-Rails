@@ -2,8 +2,8 @@
 
 one:
   name: MyString
-  person: one
+  owner: one
 
 two:
   name: MyString
-  person: two
+  owner: two

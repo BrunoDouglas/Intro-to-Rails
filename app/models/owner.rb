@@ -1,4 +1,4 @@
-class Person < ApplicationRecord
+class Owner < ApplicationRecord
   validates :name, uniqueness: true, presence: true
   validates :age, numericality: { only_integer: true, greater_than: 16 }
 
@@ -8,6 +8,6 @@ class Person < ApplicationRecord
   belongs_to :neighbourhood
 
   def vehicles
-    VehicleOwnership.where(:person => self)
+    VehicleOwnership.where(:owner => self)
   end
 end

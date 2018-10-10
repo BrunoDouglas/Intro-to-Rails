@@ -5,13 +5,13 @@ class CreateVehicleOwnerships < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :origin
       t.string :manufacturer
-      t.references :person, foreign_key: true
+      t.references :owner, foreign_key: true
 
       t.timestamps
     end
 
     create_table :vehicle_ownerships do |t|
-      t.references :person, foreign_key: true
+      t.references :owner, foreign_key: true
       t.references :vehicle, foreign_key: true
 
       t.timestamps

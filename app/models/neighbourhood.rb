@@ -1,11 +1,11 @@
 class Neighbourhood < ApplicationRecord
   validates :name, uniqueness: true, presence: true
 
-  def people
-    Person.where(:neighbourhood => self)
+  def owners
+    Owner.where(:neighbourhood => self)
   end
 
   def vehicles
-    VehicleOwnership.where(:person => people)
+    VehicleOwnership.where(:owner => owners)
   end
 end

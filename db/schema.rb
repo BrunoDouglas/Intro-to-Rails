@@ -18,21 +18,21 @@ ActiveRecord::Schema.define(version: 2018_10_07_163801) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade do |t|
+  create_table "owners", force: :cascade do |t|
     t.string "name"
     t.integer "age"
     t.integer "neighbourhood_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["neighbourhood_id"], name: "index_people_on_neighbourhood_id"
+    t.index ["neighbourhood_id"], name: "index_owners_on_neighbourhood_id"
   end
 
   create_table "vehicle_ownerships", force: :cascade do |t|
-    t.integer "person_id"
+    t.integer "owner_id"
     t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["person_id"], name: "index_vehicle_ownerships_on_person_id"
+    t.index ["owner_id"], name: "index_vehicle_ownerships_on_owner_id"
     t.index ["vehicle_id"], name: "index_vehicle_ownerships_on_vehicle_id"
   end
 

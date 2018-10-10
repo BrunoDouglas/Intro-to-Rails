@@ -4,10 +4,30 @@
   <div class="col-md-12">
     <div class="col-12 text-center text-sm-left cursor-pointer padding-top-30 padding-bottom-30" >
       <label class="name lead bolder"><%= @n.name %></label>
-      <br>
-      <span class="text-muted"><b><%= link_to 'People', "/neighbourhoods/#{@n.id}/people" %>:</b> <%= @n.people.count %> <br >
-      <span class="text-muted"><b><%= link_to 'Vehicles', "/neighbourhoods/#{@n.id}/vehicles" %>: </b><%= @n.vehicles.count %></span>
-      <br>
+      <div class="row">
+        <div class="col-6">
+          <span class="name lead"><b>Residents:</b></span>
+          <ul>
+            <% @n.owners.each do |owner| %>
+              <% unless owner.nil? %>
+                <li><%= link_to owner.name, owner %></li>
+                <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col-6">
+          <span class="text-muted small"><b>Vehicles:</b></span>
+          <ul>
+            <% @n.vehicles.each do |v| %>
+              <% unless v.vehicle.nil? %>
+              <li><%= link_to v.vehicle.name, v.vehicle  %></li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+<%= link_to '< Back to Neighbourhoods', @n %>

@@ -4,10 +4,10 @@ one:
   name: MyString
   vehicletype: one
   vehiclemake: one
-  person: one
+  owner: one
 
 two:
   name: MyString
   vehicletype: two
   vehiclemake: two
-  person: two
+  owner: two

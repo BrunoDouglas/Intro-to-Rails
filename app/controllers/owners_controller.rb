@@ -1,11 +1,11 @@
-class PeopleController < ApplicationController
+class OwnersController < ApplicationController
   def index
     page = 1
     if request.get?
       page = params[:page]
     end
 
-      @p = Person.page(page).per(5)
+      @p = Owner.order(:name).page(page).per(5)
   end
 
   def show
@@ -13,10 +13,6 @@ class PeopleController < ApplicationController
     if request.get?
       id = params[:id]
     end
-    @p = Person.find(id)
-  end
-
-  def neighbourhoods
-    @n = show
+    @p = Owner.find(id)
   end
 end

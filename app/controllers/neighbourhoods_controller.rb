@@ -15,12 +15,4 @@ class NeighbourhoodsController < ApplicationController
     end
     @n = Neighbourhood.find(id)
   end
-
-  def people
-    @n = show
-  end
-
-  def vehicles
-   @n = show
-  end
 end

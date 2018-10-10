@@ -5,15 +5,15 @@ class VehiclesController < ApplicationController
       page = params[:page]
     end
 
-      @v = Vehicle.page(page).per(5)
+      @v = Vehicle.order(:name).page(page).per(5)
   end
 
   def show
+    id = nil
+    if request.get?
+      id = params[:id]
+    end
+    @vehicle = Vehicle.find(id)
   end
 
-  def people
-  end
-
-  def neighbourhoods
-  end
 end

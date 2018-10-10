@@ -4,7 +4,7 @@ class Vehicle < ApplicationRecord
   validates :origin,  presence: true
 
   has_many :vehicleownerships
-  has_many :people, through: :vehicleownerships
+  has_many :owners, through: :vehicleownerships
 
   def getOwnersCount
     VehicleOwnership.where(:vehicle => self).count()

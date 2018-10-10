@@ -7,9 +7,9 @@ class CreateResidencies < ActiveRecord::Migration[5.2]
     #drop_table :vehicles
     #drop_table :manufacturers
     #drop_table :origins
-    #drop_table :people
+    #drop_table :owners
 
-    create_table :people do |t|
+    create_table :owners do |t|
       t.string :name
       t.integer :age
       t.references :neighbourhood, foreign_key: true
